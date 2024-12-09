@@ -179,12 +179,13 @@ def CreateTweet(
             xy=tuple(map(sum, zip(quote_author_name_position, (0, y)))),
             text=quote_author_name, font=font_quote_author_name, fill=(0, 0, 0))
         # quote author tag
-        quote_author_name_width = draw.textsize(
+        quote_author_name_width = draw.textbbox(
+            (0, 0),
             text=quote_author_name,
-            font=font_quote_author_name)[0]
+            font=font_quote_author_name)[2]
         draw.text(
             xy=tuple(map(sum, zip(quote_author_name_position,
-                     (10+quote_author_name_width, y)))),
+                                  (10+quote_author_name_width, y)))),
             text=quote_author_tag, font=font_quote_author_tag, fill="#667786")
         # quote text
         # separate text into lists of each line and calculate y position for each line
@@ -218,31 +219,22 @@ def CreateTweet(
     # retweets
     draw.text(xy=tuple(map(sum, zip(reaction_retweet_position, (0, y)))),
               text=reactions_retweet, font=font_reaction_bold, fill=(0, 0, 0))
-    x_reactions = draw.textsize(text=reactions_retweet,
-                                font=font_reaction_bold)[0] + 10
+    x_reactions = draw.textbbox((0, 0), text=reactions_retweet,
+                                font=font_reaction_bold)[2] + 10
     draw.text(xy=tuple(map(sum, zip(reaction_retweet_position, (x_reactions, y)))),
               text="Reposts", font=font_reaction_regular, fill="#667786")
-    x_reactions += draw.textsize(text="Reposts",
-                                 font=font_reaction_regular)[0] + 30
+    x_reactions += draw.textbbox((0, 0), text="Reposts",
+                                 font=font_reaction_regular)[2] + 30
     # quotes
-    # remove quote tweets
-    # draw.text(xy=tuple(map(sum, zip(reaction_retweet_position, (x_reactions, y)))),
-    #          text=reactions_quote, font=font_reaction_bold, fill=(0, 0, 0))
-    #x_reactions += draw.textsize(text=reactions_quote,
-    #                             font=font_reaction_bold)[0] + 10
-    #draw.text(xy=tuple(map(sum, zip(reaction_retweet_position, (x_reactions, y)))),
-    #          text="Quote Tweets", font=font_reaction_regular, fill="#667786")
-    #x_reactions += draw.textsize(text="Quote Tweets",
-    #                             font=font_reaction_regular)[0] + 30
     # likes
     draw.text(xy=tuple(map(sum, zip(reaction_retweet_position, (x_reactions, y)))),
               text=reactions_like, font=font_reaction_bold, fill=(0, 0, 0))
-    x_reactions += draw.textsize(text=reactions_like,
-                                 font=font_reaction_bold)[0] + 10
+    x_reactions += draw.textbbox((0, 0), text=reactions_like,
+                                 font=font_reaction_bold)[2] + 10
     draw.text(xy=tuple(map(sum, zip(reaction_retweet_position, (x_reactions, y)))),
               text="Likes", font=font_reaction_regular, fill="#667786")
-    x_reactions += draw.textsize(text="Likes",
-                                 font=font_reaction_regular)[0] + 30
+    x_reactions += draw.textbbox((0, 0), text="Likes",
+                                 font=font_reaction_regular)[2] + 30
     if reply:
         y += footer_height
         # reply header (include avatar and name), height=126
@@ -257,9 +249,10 @@ def CreateTweet(
             xy=tuple(map(sum, zip(reply_author_name_position, (0, y)))),
             text=reply_author_name, font=font_reply_author_name, fill=(0, 0, 0))
         # reply author tag
-        reply_author_name_width = draw.textsize(
+        reply_author_name_width = draw.textbbox(
+            (0, 0),
             text=reply_author_name,
-            font=font_reply_author_name)[0]
+            font=font_reply_author_name)[2]
         draw.text(
             xy=tuple(map(sum, zip(reply_author_name_position,
                                   (10+reply_author_name_width, y)))),
