@@ -77,7 +77,6 @@ quote_header_height = 100
 quote_footer_height = 35
 quote_text_line_height = 35
 reply_header_height = 100
-# reply_footer_height = 69
 reply_text_line_height = 35
 # backgrounds
 header = Image.open('input/twitter_module/header.png').convert('RGB')
@@ -86,7 +85,6 @@ quote_header = Image.open('input/twitter_module/quote_header.png').convert('RGB'
 quote_background = Image.open('input/twitter_module/quote_background.png').convert('RGB')
 quote_footer = Image.open('input/twitter_module/quote_footer.png').convert('RGB')
 reply_header = Image.open('input/twitter_module/reply_header.png').convert('RGB')
-# reply_footer = Image.open('input/twitter_module/reply_footer.png').convert('RGB')
 
 # function to create tweet
 
