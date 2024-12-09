@@ -14,10 +14,10 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 @app.route('/generate_tweet_image', methods=['GET', 'POST'])
 def generate_tweet_image():
     if request.method == 'GET':
-        stance = request.args.get("stance", "Please generate a tweet that reflects my position on this issue.")
+        user_stance = request.args.get("stance", "Please generate a tweet that reflects my position on this issue.")
     else:
         user_data = request.get_json()
-        stance = user_data.get("stance", "Please generate a tweet that reflects my position on this issue.")
+        user_stance = user_data.get("stance", "Please generate a tweet that reflects my position on this issue.")
 
     # Construct the prompt with the specified logic
     prompt = f"{user_stance}. Please generate a tweet that reflects my position on this issue."
