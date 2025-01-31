@@ -1,9 +1,9 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, jsonify
 from io import BytesIO
-from tweet_image_generator import CreateTweet  
-from openai import OpenAI  
+import base64
+from tweet_image_generator import CreateTweet
+from openai import OpenAI
 import os
-
 
 app = Flask(__name__)
 
@@ -41,12 +41,19 @@ def generate_tweet_image():
         time="2022-07-05 14:34"
     )
 
-    # Save image 
+    # Convert image to base64
     img_io = BytesIO()
-    image.save(img_io, 'PNG')
+    image.save(img_io, format='PNG')
     img_io.seek(0)
-    return send_file(img_io, mimetype='image/png')
+    img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
 
+    # Return JSON response
+    return jsonify({
+        'success': True,
+        'tweet_text': tweet_text,
+        'image_base64': img_base64,
+        'image_type': 'image/png'
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
