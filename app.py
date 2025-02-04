@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from io import BytesIO
 import base64
 from tweet_image_generator import CreateTweet
@@ -41,19 +41,24 @@ def generate_tweet_image():
         time="2022-07-05 14:34"
     )
 
-    # Convert image to base64
+    # Convert image to BytesIO
     img_io = BytesIO()
     image.save(img_io, format='PNG')
     img_io.seek(0)
-    img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
 
-    # Return JSON response
+    # If it's a GET request, return the image directly
+    if request.method == 'GET':
+        return send_file(img_io, mimetype='image/png')
+
+    # For POST, return JSON 
+    img_base64 = base64.b64encode(img_io.getvalue()).decode('utf-8')
     return jsonify({
         'success': True,
         'tweet_text': tweet_text,
         'image_base64': img_base64,
         'image_type': 'image/png'
     })
+
 
 if __name__ == '__main__':
     app.run(debug=True)
