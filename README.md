@@ -1,7 +1,7 @@
 # AI-Generated Tweet Image API
 
 ## Overview
-This project is a Flask-based web service that dynamically generates Twitter-style images using OpenAI API model and PIL.
+This tool is a Flask-based web service that generates Twitter-style images using OpenAI API model and PIL.
 
 The tool:
 - Accepts a policy stance from a user.
