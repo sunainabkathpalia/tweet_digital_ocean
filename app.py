@@ -32,7 +32,7 @@ def generate_tweet_image():
 
     # Generate tweet image
     image = CreateTweet(
-        author_avatar="input/avatar/obama_avatar.jpeg",
+        author_avatar="input/avatar/profile_dp.jpeg",
         author_name="Mark Dem",
         author_tag="@_dem2022",
         text=tweet_text,
